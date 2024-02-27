@@ -1,0 +1,932 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>تفاصيل العرض</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">لوحة التحكم</a></li>
+                    <li class="breadcrumb-item active">تفاصيل العرض</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+        <!-- Timelime example  -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- The time line -->
+                <div class="timeline">
+                  
+                 
+                    <!-- timeline item -->
+                    <div>
+                        <i class="fa fa-camera bg-purple"></i>
+                        <div class="timeline-item">
+                           
+                            <div class="timeline-body">
+                                @foreach(var item in Model.lstOfferImages) 
+                                {
+                                    <img style="width:150px; height:100px;" src="@string.Format("/Uploads/{0}",item.OfferImagePath)" alt="...">
+                                }
+                             
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- END timeline item -->
+                    <!-- timeline item -->
+                    <div>
+                        <i class="fas fa-video bg-maroon"></i>
+
+                        <div class="timeline-item">
+                            @foreach (var item in Model.lsOfferVideo)
+                            {
+                                <span class="time"><i class="fas fa-clock"></i> 5 days ago</span>
+
+                                <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
+
+                                <div class="timeline-body">
+                                    <div class="embed-responsive embed-responsive-16by9">
+
+                                        <iframe class="embed-responsive-item" src="@string.Format("/Uploads/{0}",item.OfferVideoPath)" frameborder="0" allowfullscreen=""></iframe>
+                                    </div>
+                                </div>
+                                <div class="timeline-footer">
+                                    <a href="#" class="btn btn-sm bg-maroon">See comments</a>
+                                </div>
+
+                              
+                            }
+                          
+                        </div>
+                    </div>
+                  
+                    <!-- END timeline item -->
+                    <div>
+                        <i class="fas fa-clock bg-gray"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+    <!-- /.timeline -->
+
+</section>
+<!-- /.content -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form id="form" enctype="multipart/form-data" method="post" role="form" asp-area="Admin" asp-controller="Offer" asp-action="Save">
+
+                        <div class="card-body">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            @if(Model.OneOffer.UnitNameField == "true") 
+                            {
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">نوع الوحدة العقارية </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label> نوع الوحدة العقارية</label>
+                                                            <select id="age" disabled asp-for="OneOffer.UnitId" asp-items="@(new SelectList(ViewBag.Units , "UnitId" , "UnitName"))" class="form-control select2" style="width: 100%;" required>
+                                                            </select>
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+
+                            }
+                            
+                            @if(Model.OneOffer.RegionNameField == "true")
+                            {
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">اسم منطقة الوحدة العقارية </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label> اسم منطقة الوحدة العقارية</label>
+                                                        <select id="rname" disabled asp-for="OneOffer.RegionId" asp-items="@(new SelectList(ViewBag.Regions , "RegionId" , "RegionName"))" class="form-control select2" style="width: 100%;" required>
+                                                        </select>
+
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+
+                            </section>
+                            }
+
+                        
+
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">صيغة العرض </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">صيغة العرض</label>
+                                                        <textarea disabled type="text" class="form-control" id="otext" asp-for="OneOffer.OfferSyntax" placeholder=" صيغة العرض"></textarea>
+                                                       
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+
+                            </section>
+
+
+
+
+                            @if (Model.OneOffer.OwnerNameField == "true")
+                            {
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">اسم صاحب العرض </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">اسم صاحب العرض</label>
+                                                            <input disabled type="text" class="form-control" id="oowner" asp-for="OneOffer.OwnerName" placeholder=" اسم صاحب العرض">
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+                            }
+
+                            
+
+                            @if (Model.OneOffer.OwnerPhoneNumberField == "true")
+                            {
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">رقم تليفون صاحب العرض </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">رقم تليفون صاحب العرض</label>
+                                                            <input disabled type="text" class="form-control" id="towner" asp-for="OneOffer.OwnerPhoneNumber" placeholder=" رقم تليفون صاحب العرض">
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+
+                            }
+
+
+                           
+
+
+                            @if (Model.OneOffer.PropertyDocumentPathField == "true")
+                            {
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">سند ملكية الوحدة العقارية </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+
+                                                            <div class="input-group mb-3">
+                                                                <div class="custom-file">
+                                                                    <label for="exampleInputPassword1">سند ملكية الوحدة العقارية  </label>
+                                                                    <a href="@string.Format("/Uploads/{0}",Model.OneOffer.PropertyDocumentPath)" class="btn btn-primary">اقرا الملف </a>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+
+                            }
+
+
+
+                           
+
+
+                            @if (Model.OneOffer.LocationField == "true")
+                            {
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">موقع الوحدة العقارية </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">موقع الوحدة العقارية</label>
+                                                            <input disabled type="text" class="form-control" id="exampleInputPassword111" asp-for="OneOffer.Location" placeholder=" موقع الوحدة العقارية">
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+
+                            }
+
+                           
+
+
+                            @if (Model.OneOffer.LatitudeField == "true")
+                            {
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">خطوط طول موقع الوحدة العقارية </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">خطوط طول موقع الوحدة العقارية</label>
+                                                            <input disabled type="text" class="form-control" id="tlng2" asp-for="OneOffer.lng" placeholder=" خطوط طول موقع الوحدة العقارية">
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+
+                            }
+
+
+                           
+
+
+                            @if (Model.OneOffer.LongituteField == "true")
+                            {
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">خطوط عرض موقع الوحدة العقارية </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">خطوط عرض موقع الوحدة العقارية</label>
+                                                            <input disabled type="text" class="form-control" id="tlat2" asp-for="OneOffer.lat" placeholder=" خطوط عرض موقع الوحدة العقارية">
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+
+                            }
+
+
+                           
+
+
+                          
+
+                           
+
+
+
+
+
+
+                            <div class="form-group">
+                               
+
+
+
+                                <input type="hidden" asp-for="OneOffer.OfferId">
+                                <input type="hidden" asp-for="OneOffer.UnitId">
+                                <input type="hidden" asp-for="OneOffer.CreatedDate">
+                                <input type="hidden" asp-for="OneOffer.RegionId">
+                                <input type="hidden" asp-for="OneOffer.ReceptionRepId">
+                                <input type="hidden" asp-for="OneOffer.OfferStatus">
+                                <input type="hidden" asp-for="OneOffer.contract_type">
+                                <input type="hidden" asp-for="OneOffer.icon">
+                                <input type="hidden" asp-for="OneOffer.SalesRepId">
+                                <input type="hidden" asp-for="OneOffer.SalesRepId">
+                                 <input type="hidden" asp-for="OneOffer.lat">
+                                  <input type="hidden" asp-for="OneOffer.lng">
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                       
+                    </form>
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+
+            </div>
+            <!--/.col (left) -->
+
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+<divs style="display:none" class="container">
+    <button id="button">Generate PDF</button>
+    <div class="card" id="makepdf" dir="rtl">
+
+        <div class="timeline-body">
+            @foreach (var item in Model.lstOfferImages)
+            {
+               
+
+                <a href="@string.Format("/Uploads/{0}",item.OfferImagePath)">صور الوحدة العقارية</a>
+                <br />
+            }
+
+
+        </div>
+        <div class="timeline-body">
+            @foreach (var item in Model.lsOfferVideo)
+            {
+
+
+                <a href="@string.Format("/Uploads/{0}",item.OfferVideoPath)">فيديو الوحدة العقارية</a>
+                <br />
+            }
+
+
+        </div>
+        <div class="timeline-body">
+            @foreach (var item in Model.lsOfferVideo)
+            {
+
+
+                <a href="@item.OfferVideoYouTubeLink">لينك فيديو الوحدة العقارية</a>
+                <br />
+            }
+
+
+        </div>
+        <br />
+        <br />
+        <h2>عرض وحدة عقارية</h2>
+        <br />
+        <br />
+        <ul>
+            <li>
+                <h3 id="utypeeP" >
+                   نوع الوحدةالعقارية
+                </h3>
+                <h4 id="utypee">
+                 
+                </h4>
+            </li>
+            <li>
+                <h3 id="typeunitP">
+                   
+                    موقع الوحدةالعقارية
+                </h3>
+                <h4 id="typeunit">
+                  
+                </h4>
+            </li>
+            <li>
+                <h3 id="regionnameP">
+                    اسم منطقة الوحدة العقارية
+                   
+                </h3>
+                <h4 id="regionname">
+                </h4>
+            </li>
+
+            <li>
+                <h3 id="oTextP">
+                    صيغة العرض
+
+                </h3>
+                <h4 id="oText">
+                </h4>
+            </li>
+
+
+            <li>
+                <h3 id="oOwnerP">
+                   اسم صاحب العرض
+
+                </h3>
+                <h4 id="oOwner">
+                </h4>
+            </li>
+
+
+
+              <li>
+                <h3 id="tOwnerP">
+                   رقم تليفون صاحب العرض
+
+                </h3>
+                <h4 id="tOwner">
+                </h4>
+            </li>
+
+
+                <li>
+                <h3 id="tlat">
+                  خطوط عرض موقع العرض
+
+                </h3>
+                <h4 id="tlat1">
+                </h4>
+            </li>
+
+
+
+
+            <li>
+                <h3 id="tlng">
+                    خطوط طول موقع العرض
+
+                </h3>
+                <h4 id="tlng1">
+                </h4>
+            </li>
+
+            
+            
+        </ul>
+    </div>
+</divs>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                    <a asp-controller="OfferNote" asp-action="Form2" asp-route-id="@Model.OneOffer.OfferId" class="btn btn-primary">اضف ملاحظة  </a>
+
+                    @if (Model.OneOffer.contract_type != "محجوز" && Model.OneOffer.contract_type != "مباع")
+                    {
+                        <a asp-controller="OfferBooking" asp-action="Form2" asp-route-id="@Model.OneOffer.OfferId" class="btn btn-primary">حجز العرض  </a>
+
+                    }
+                  
+                    @if (User.IsInRole("Admin")) 
+                    {
+                        @if (Model.OneOffer.OfferStatus != "موافقة")
+                        {
+                            <a asp-controller="Offer" asp-action="Approve" asp-route-id="@Model.OneOffer.OfferId" class="btn btn-primary">الموافقة عل العرض  </a>
+
+                        }
+                       
+                    }
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>  اسم المرسل</th>
+                                <th>  قسم المرسل</th>
+                                <th> الملاحظة</th>
+                                <th>التاريخ</th>
+
+                               
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lsOfferNote)
+                            {
+
+                                <tr>
+                                    <td>@item.SenderName</td>
+                                    <td>
+                                        @item.SenderDepartment
+                                    </td>
+                                    <td>
+                                        @item.NoteSyntax
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+
+                                  
+                                   
+
+
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>  اسم المرسل</th>
+                                <th>  قسم المرسل</th>
+                                <th> الملاحظة</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- /.content -->
+ <div style="display:none"  id="content" class="rtl">
+        <h1>مرحبا بالعالم!</h1>
+        <p>هذه هي بعض النصوص العربية التي نريد تحويلها إلى ملف PDF.</p>
+    </div>
+@if (User.IsInRole("طباعة")) 
+{
+    <button onclick="generatePdf2()">تحويل إلى PDF</button>
+}
+   
+@*<button onclick="generatePdf()">Generate PDF</button>*@
+ <script>
+        function generatePdf() {
+            var doc = new jsPDF();
+            var type = document.getElementById("exampleInputPassword11").value;
+            var type1 = document.getElementById("exampleInputPassword111").value;
+        
+            doc.text(20, 20, type1);
+            doc.text(20, 30, 'This is client-side Javascript to generate a PDF.');
+
+            // Add new page
+            doc.addPage();
+            doc.text(20, 20, 'Visit CodexWorld.com');
+
+            // Save the PDF
+            doc.save('document.pdf');
+        }
+  </script>
+
+<script>
+    const ageSelect2 = document.getElementById("rname");
+    if (ageSelect2 === null) {
+     
+        var utypee2 = document.getElementById('regionnameP');
+        utypee2.innerHTML = "";
+
+    }
+    else {
+        const selectedOption2 = ageSelect2.selectedOptions[0];
+        const selectedText2 = selectedOption2.text;
+
+        var utypee2 = document.getElementById('regionname');
+        utypee2.innerHTML = selectedText2;
+
+    };
+
+
+    const ageSelect = document.getElementById("age");
+    if(ageSelect ===null) 
+    {
+        var utypee = document.getElementById('utypeeP');
+        utypee.innerHTML = "";
+    }
+    else 
+    {
+        const selectedOption = ageSelect.selectedOptions[0];
+        const selectedText = selectedOption.text;
+
+        var utypee = document.getElementById('utypee');
+        utypee.innerHTML = selectedText;
+    };
+   
+
+
+  
+    if(document.getElementById("exampleInputPassword111") === null) 
+    {
+       ;
+        var typeunit = document.getElementById('typeunitP');
+        typeunit.innerHTML = "";
+
+    }
+    else 
+    {
+        var typeunit = document.getElementById('typeunit');
+        typeunit.innerHTML = document.getElementById("exampleInputPassword111").value;
+
+    };
+
+
+
+    
+   
+
+  
+
+
+        var typeunit1 = document.getElementById('oText');
+        typeunit1.innerHTML = document.getElementById("otext").value;
+
+    
+
+
+  
+
+
+    if (document.getElementById("oowner") === null) {
+       
+        var typeunit2 = document.getElementById('oOwnerP');
+        typeunit2.innerHTML = "";
+
+    }
+    else {
+        var typeunit2 = document.getElementById('oOwner');
+        typeunit2.innerHTML = document.getElementById("oowner").value;
+
+    };
+
+  
+
+
+    if (document.getElementById("towner") === null) {
+     
+        var typeunit3 = document.getElementById('tOwnerP');
+        typeunit3.innerHTML = "";
+
+    }
+    else {
+          var typeunit3 = document.getElementById('tOwner');
+    typeunit3.innerHTML = document.getElementById("towner").value;
+
+    };
+
+
+    if (document.getElementById("tlat2") === null) {
+
+        var typeunit4 = document.getElementById('tlat');
+        typeunit4.innerHTML = "";
+
+    }
+    else {
+        var typeunit4 = document.getElementById('tlat1');
+        typeunit4.innerHTML = document.getElementById("tlat2").value;
+
+    };
+
+
+    if (document.getElementById("tlng2") === null) {
+
+        var typeunit4 = document.getElementById('tlng');
+        typeunit4.innerHTML = "";
+
+    }
+    else {
+        var typeunit4 = document.getElementById('tlng1');
+        typeunit4.innerHTML = document.getElementById("tlng2").value;
+
+    };
+    
+    function generatePdf2() {
+        //const element = document.getElementById('content');
+        var type = document.getElementById("makepdf").innerHTML;
+        const options = {
+            filename: 'document.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().set(options).from(type).save();
+    }
+</script>
+<script>
+    var button = document.getElementById("button");
+    var makepdf = document.getElementById("makepdf");
+
+    button.addEventListener("click", function () {
+       
+        var mywindow = window.open("", "PRINT",
+            "height=400,width=600" );
+       
+        mywindow.document.write(makepdf.innerHTML);
+
+        mywindow.document.close();
+        mywindow.focus();
+
+        mywindow.print();
+        //mywindow.close();
+
+        return true;
+    });
+</script>

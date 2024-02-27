@@ -1,0 +1,131 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض  الطلبات</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">عملاحظات الطلبات</a></li>
+                    <li class="breadcrumb-item active">عرض  الطلبات</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>  اسم المرسل</th>
+                                <th>  قسم المرسل</th>
+                                <th> الملاحظة</th>
+                                <th> حالة اظهار الملاحظة
+                                <th>التاريخ</th>
+
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                                <th>اخفاء</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lsRequestNote)
+                            {
+
+                                <tr>
+                                    <td>@item.SenderName</td>
+                                    <td>
+                                        @item.SenderDepartment
+                                    </td>
+                                    <td>
+                                        @item.NoteSyntax
+                                    </td>
+                                    <td>
+                                       @if(item.Visibility == "true") 
+                                       {
+                                           @ViewBag.Visible
+                                       }
+                                        else if (item.Visibility == "false")
+                                        {
+                                            @ViewBag.InVisible
+                                       }
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+
+
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="RequestNote" asp-action="Form" asp-route-id="@item.RequestNotesId" class="btn btn-info text-white" style="cursor:pointer">
+                                            تعديل
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="RequestNote" asp-action="Delete" asp-route-id="@item.RequestNotesId" class="btn btn-danger text-white" style="cursor:pointer">
+                                            حذف
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @if (item.Visibility == "true")
+                                        {
+                                            <a asp-area="Admin" asp-controller="RequestNote" asp-action="Visibility" asp-route-id="@item.RequestNotesId" class="btn btn-info text-white" style="cursor:pointer">
+                                                اخفاء
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-area="Admin" asp-controller="RequestNote" asp-action="Visibility2" asp-route-id="@item.RequestNotesId" class="btn btn-info text-white" style="cursor:pointer">
+                                                اظهار
+                                            </a>
+                                        }
+                                       
+                                    </td>
+
+
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>  اسم المرسل</th>
+                                <th>  قسم المرسل</th>
+                                <th> الملاحظة</th>
+                                <th>التاريخ</th>
+
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                                <th>اخفاء</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

@@ -1,0 +1,139 @@
+﻿@model AqaratProject.Models.HomePageModel
+@inject Microsoft.AspNetCore.Identity.UserManager<BL.ApplicationUser> userManager
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض  تقرير اداء الموظف</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">اداء الموظف </a></li>
+                    <li class="breadcrumb-item active"> عرض  تقرير اداء الموظف </li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+           
+            <section class="content">
+
+
+
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">اختر الموظف  </h3>
+
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label> اسم الموظف</label>
+                                        <select asp-items="@(new SelectList(ViewBag.Regions , "Id" , "FirstName"))" id="employee"  onchange="myFunction()"  class="form-control select2" style="width: 100%;" required>
+                                            <option value="">اختر</option>
+
+
+                                        </select>
+                                       
+                                    </div>
+                                 
+
+                                </div>
+
+                            
+
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+
+            </section>
+
+
+         
+     <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3 id="BookingNo"></h3>
+
+                <p>عدد عمليات الحجز</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3  id="SalesNo"><sup style="font-size: 20px"></sup></h3>
+
+                <p>عدد عمليات البيع</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3 id="OfferNo"></h3>
+
+                <p>عدد العروض</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+       
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+    
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+
+      
+           
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<script src="~/js/EmpPerf.js"></script>

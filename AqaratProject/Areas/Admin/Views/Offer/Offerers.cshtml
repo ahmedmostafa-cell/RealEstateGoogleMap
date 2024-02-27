@@ -1,0 +1,124 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid" >
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>بيانات اصحاب العروض </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">اصحاب العروض </a></li>
+                    <li class="breadcrumb-item active">عرض بيانات اصحاب العروض </li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card" >
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <button class="btn btn-info text-white" style="cursor:pointer" onclick="exportToExcel()">Export to Excel</button>
+                    <br />
+                    <br />
+                    <table id="myTable" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                               
+                               
+                                <th>نوع الوحدة العقارية  </th>
+                               
+                                <th>اسم منطقة الوحدة العقارية  </th>
+
+
+                                <th>اسم صاحب العرض     </th>
+
+                                <th>رقم تليفون صاحب العرض     </th>
+
+                               
+                             
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lstOffers)
+                            {
+
+                                <tr>
+                                 
+                                   
+                                    <td>
+                                        @item.UnitName
+                                    </td>
+                                    <td>
+                                        @item.RegionName
+                                    </td>
+                                   
+                                    <td>
+                                        @item.OwnerName
+                                    </td>
+
+                                    <td>
+                                        @item.OwnerPhoneNumber
+                                    </td>
+
+
+                                  
+
+                                  
+
+
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>نوع الوحدة العقارية  </th>
+
+                                <th>اسم منطقة الوحدة العقارية  </th>
+
+
+                                <th>اسم صاحب العرض     </th>
+
+                                <th>رقم تليفون صاحب العرض     </th>
+
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<script>
+    function exportToExcel() {
+        let table = document.getElementById("myTable");
+        let html = table.outerHTML.replace(/ /g, '%20');
+        let url = 'data:application/vnd.ms-excel;charset=utf-8,' + html;
+        let downloadLink = document.createElement("a");
+        downloadLink.href = url;
+        downloadLink.download = "table.xls";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+</script>

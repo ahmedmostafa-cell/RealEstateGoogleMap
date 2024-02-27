@@ -1,0 +1,111 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض  استفسارات</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">عن التطبيق</a></li>
+                    <li class="breadcrumb-item active">عرض  استفسارات</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>  اسم صاحب الاستفسار</th>
+                                <th>  الاستفسار</th>
+                                <th> رقم تليفون صاحب الاستفسار</th>
+                                <th> اسم مدون الاستفسار</th>
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lstInquiries)
+                            {
+
+                                <tr>
+                                    <td>@item.InquiryOwnerName</td>
+                                    <td>
+                                        @item.InquirySyntax
+                                    </td>
+                                    <td>
+                                        @item.InquiryOwnerPhoneNumber
+                                    </td>
+                                    <td>
+                                        @item.UpdatedBy
+                                    </td>
+
+                                 @*   <td style="width:10%">
+                                       
+                                            <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.ApprovedOfficeLogo)" alt="Img placeholder">
+
+                                           
+                                          
+                                       
+                                       
+                                    </td>*@
+                                 @*   <td class="product-img">
+                                        <a href="@string.Format("/Uploads/{0}",item.ApprovedOfficeLicenseDoc)" class="btn btn-primary">Read Now</a>
+                                    </td>*@
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Inquiry" asp-action="Form" asp-route-id="@item.InquiryId" class="btn btn-info text-white" style="cursor:pointer">
+                                            تعديل
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Inquiry" asp-action="Delete" asp-route-id="@item.InquiryId" class="btn btn-danger text-white" style="cursor:pointer">
+                                            حذف
+                                        </a>
+                                    </td>
+                                  
+                                   
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>عنوان عن التطبيق</th>
+                                <th>تفاصيل عن التطبيق</th>
+                                <th>موجهة لمن</th>
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

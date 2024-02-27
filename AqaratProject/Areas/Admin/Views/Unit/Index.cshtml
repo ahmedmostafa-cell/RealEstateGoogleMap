@@ -1,0 +1,100 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض  الوحدات العقارية</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#"> الوحدة العقارية</a></li>
+                    <li class="breadcrumb-item active">  عرض  الوحدات العقارية</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>  اسم الوحدة العقارية </th>
+                              
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lsUnit)
+                            {
+
+                                <tr>
+                                    <td>@item.UnitName</td>
+                                   
+
+                                 @*   <td style="width:10%">
+                                       
+                                            <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.ApprovedOfficeLogo)" alt="Img placeholder">
+
+                                           
+                                          
+                                       
+                                       
+                                    </td>*@
+                                 @*   <td class="product-img">
+                                        <a href="@string.Format("/Uploads/{0}",item.ApprovedOfficeLicenseDoc)" class="btn btn-primary">Read Now</a>
+                                    </td>*@
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Unit" asp-action="Form" asp-route-id="@item.UnitId" class="btn btn-info text-white" style="cursor:pointer">
+                                            تعديل
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Unit" asp-action="Delete" asp-route-id="@item.UnitId" class="btn btn-danger text-white" style="cursor:pointer">
+                                            حذف
+                                        </a>
+                                    </td>
+                                  
+                                   
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>  اسم الوحدة العقارية </th>
+
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

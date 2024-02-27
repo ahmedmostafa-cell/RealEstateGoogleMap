@@ -1,0 +1,186 @@
+﻿@model Domains.TbOfferImage
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>العروض </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">صور العروض </a></li>
+                    <li class="breadcrumb-item active">اضافة صور العروض  </li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form id="form" enctype="multipart/form-data" method="post" role="form" asp-area="Admin" asp-controller="OfferImage" asp-action="Save">
+
+                        <div class="card-body">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">اضافة صورة  الوحدة العقارية </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+
+                                                        <div class="input-group mb-3">
+                                                            <div class="custom-file">
+                                                                <label for="exampleInputPassword1">صورة الوحدة العقارية  </label>
+                                                                <input required type="file" name="files" id="selectedFile" />
+                                                                <div class="text-danger" id="error"></div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+                               
+                            </section>
+
+
+
+
+
+                           
+                           
+
+                             
+
+
+
+
+                            
+
+
+
+
+
+
+                          
+                           
+
+
+
+
+
+                            <div class="form-group">
+                                <input type="hidden" asp-for="OfferImageId">
+                                <input type="hidden" asp-for="OfferId">
+                              
+                                <input type="hidden" asp-for="CreatedDate">
+                               
+
+                            </div>
+                         
+                            
+                           
+                           
+                           
+                          
+
+
+
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+
+            </div>
+            <!--/.col (left) -->
+
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<script type="application/javascript">
+    var a = document.getElementById("inputGroupFile02");
+    a.value= "ahmed.txt";
+</script>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        //alert("ahmed");
+        const logo = document.getElementById('selectedFile');
+        const license = document.getElementById('selectedFiles');
+        const form = document.getElementById('form')
+        const erroElement = document.getElementById('error')
+        const erroElement1 = document.getElementById('error1')
+        form.addEventListener('submit', (e) => {
+            //e.preventDefault();
+            let messages = [];
+            let messages2 = [];
+            if (logo.value === '' || logo.value == null) {
+                //alert('ahmed');
+                messages.push('This field is required');
+                erroElement.innerHTML = messages;
+            }
+            else {
+                messages = [];
+                erroElement.innerHTML = messages;
+
+            }
+            if (license.value === '' || license.value == null) {
+                //alert('ahmed');
+                messages2.push('This field is required');
+                erroElement1.innerHTML = messages2;
+            }
+            else {
+                messages = [];
+                erroElement1.innerHTML = messages2;
+
+            }
+
+
+        });
+    </script>
+    }

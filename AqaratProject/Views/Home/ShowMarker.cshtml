@@ -1,0 +1,167 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps JavaScript API v3 Example: Map Simple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmCvx8YNLMKoNTFkQZMQWbrpFytDLl5Dg&callback=initMap&libraries=marker&v=beta"></script>
+    <script defer src='https://unpkg.com/google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js'></script>
+    <style>
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script type="text/javascript">
+        function initMap() {
+            var myLatLng = { lat: -25.363, lng: 131.044 };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
+            });
+        }
+
+    </script>
+    <style>
+        /**
+         * 
+         * Copyright 2019 Google LLC. All Rights Reserved.
+         * SPDX-License-Identifier: Apache-2.0
+         */
+        :root {
+            --building-color: #FF9800;
+            --house-color: #0288D1;
+            --shop-color: #7B1FA2;
+            --warehouse-color: #558B2F;
+        }
+
+        /*
+             * Optional: Makes the sample page fill the window.
+             */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*
+             * Always set the map height explicitly to define the size of the div element
+             * that contains the map.
+             */
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        /*
+             * point styles in unhighlighted state.
+             */
+        .point {
+            align-items: center;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            color: #263238;
+            display: flex;
+            font-size: 14px;
+            gap: 15px;
+            height: 20px;
+            justify-content: center;
+            padding: 4px;
+            position: relative;
+            position: relative;
+            transition: all 0.3s ease-out;
+            width: 20px;
+        }
+
+            .point::after {
+                border-left: 9px solid transparent;
+                border-right: 9px solid transparent;
+                border-top: 9px solid #FFFFFF;
+                content: "";
+                height: 0;
+                left: 50%;
+                position: absolute;
+                top: 95%;
+                transform: translate(-50%, 0);
+                transition: all 0.3s ease-out;
+                width: 0;
+                z-index: 1;
+            }
+
+            .point .icon {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                color: #e81b1b;
+            }
+
+                .point .icon svg {
+                    height: 15px;
+                    width: auto;
+                }
+
+            .point .details {
+                display: none;
+                flex-direction: column;
+                flex: 1;
+            }
+
+            .point .customer_name {
+                color: #9E9E9E;
+                font-size: 10px;
+                margin-bottom: 10px;
+                margin-top: 5px;
+            }
+
+            /*
+             * point styles in highlighted state.
+             */
+            .point highlight {
+                background-color: #FFFFFF;
+                border-radius: 8px;
+                box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+                height: 80px;
+                padding: 8px 15px;
+                width: auto;
+            }
+
+                .point highlight::after {
+                    border-top: 9px solid #FFFFFF;
+                }
+
+                .point highlight .details {
+                    display: flex;
+                }
+
+                .point highlight .icon svg {
+                    width: 50px;
+                    height: 50px;
+                }
+
+    </style>
+</body>
+</html>

@@ -1,0 +1,453 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@{
+    Layout = "";
+}
+@using Microsoft.AspNetCore.Identity
+@model BL.ApplicationUser
+@inject Microsoft.AspNetCore.Identity.RoleManager<IdentityRole> ROLERmANAGER
+
+
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Porto - Responsive HTML5 Template</title>
+
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="موقع العقارات">
+    <meta name="author" content="okler.net">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/vipassist/img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="~/vipassist/img/apple-touch-icon.png">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+
+    <!-- Web Fonts  -->
+    <link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light&display=swap" rel="stylesheet" type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="~/vipassist/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/vipassist/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/vipassist/vendor/animate/animate.compat.css">
+    <link rel="stylesheet" href="~/vipassist/vendor/simple-line-icons/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="~/vipassist/vendor/owl.carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vipassist/vendor/owl.carousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/vipassist/vendor/magnific-popup/magnific-popup.min.css">
+
+    <!-- Theme CSS -->
+    @*<link rel="stylesheet" href="~/vipassist/css/theme.css">*@
+    <link rel="stylesheet" href="~/vipassist/css/rtl-theme.css">
+    @*<link rel="stylesheet" href="~/vipassist/css/theme-elements.css">*@
+    <link rel="stylesheet" href="~/vipassist/css/rtl-theme-elements.css">
+    @*<link rel="stylesheet" href="~/vipassist/css/theme-blog.css">*@
+    <link rel="stylesheet" href="~/vipassist/css/rtl-theme-blog.css">
+    @*	<link rel="stylesheet" href="~/vipassist/css/theme-shop.css">*@
+    <link rel="stylesheet" href="~/vipassist/css/rtl-theme-shop.css">
+
+    <!-- Current Page CSS -->
+    <link rel="stylesheet" href="~/vipassist/vendor/circle-flip-slideshow/css/component.css">
+
+    <!-- Skin CSS -->
+    <link id="skinCSS" rel="stylesheet" href="~/vipassist/css/skins/default.css">
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/vipassist/css/custom.css">
+
+    <!-- Head Libs -->
+    <script src="~/vipassist/vendor/modernizr/modernizr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" crossorigin="anonymous" />
+</head>
+
+<body data-plugin-page-transition>
+
+		<div class="body">
+			<header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
+				<div class="header-body">
+					<div class="header-container container">
+						<div class="header-row">
+							<div class="header-column">
+								<div class="header-row">
+									<div class="header-logo">
+										<a href="index.html">
+											<img alt="Porto" width="100" height="48" data-sticky-width="82" data-sticky-height="40" src="~/vipassist/img/logo-default-slim.png">
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-end">
+								<div class="header-row">
+									<div class="header-nav header-nav-line header-nav-top-line header-nav-top-line-with-border order-2 order-lg-1">
+										<div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1">
+											<nav class="collapse">
+												<ul class="nav nav-pills" id="mainNav">
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="Admin" asp-controller="Home" asp-action="Index">
+														لوحة التحكم
+													</a>
+
+												</li>
+											@*	<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Privacy">
+														صفحة العروض و الطلبات
+													</a>
+
+												</li>*@
+													<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle" asp-area="" asp-controller="Roles" asp-action="Index">
+															الصلاحيات
+														</a>
+													
+													</li>
+													<li class="dropdown dropdown-mega">
+													<a class="dropdown-item dropdown-toggle" asp-area="" asp-controller="User" asp-action="Index">
+															المستخدمين
+														</a>
+													
+													</li>
+													<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Index">
+															الصفحة الرئيسية
+														</a>
+														
+													</li>
+													@*<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map">
+															الخرايط
+														</a>
+														
+													</li>
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map2">
+														الخرايط2
+													</a>
+
+												</li>
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map3">
+														الخرايط3
+													</a>
+
+												</li>*@
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map4">
+														خريطة العروض
+													</a>
+
+												</li>
+
+
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map40">
+														خريطة الطلبات
+													</a>
+
+												</li>
+											@*	<li>
+												<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map5">
+													الخرايط 5
+												</a>
+
+												</li>*@
+											@*	<li>
+												<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map6">
+													الخرايط 6
+												</a>
+
+												</li>*@
+
+											@*	<li>
+													<a  class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="OpenWindow">
+														Marker Wth Window
+													</a>
+
+												</li>*@
+
+											@*	<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMarker">
+														Show Marker
+													</a>
+
+												</li>
+
+
+												<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMarkerWithCustomIcons">
+														Show Marker With Custom Icons
+													</a>
+
+												</li>*@
+
+
+
+											@*	<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMultipleMarker">
+														Show Multiple Marker 
+													</a>
+
+												</li>*@
+
+
+
+											@*	<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMultipleMarkerWithCustomIcon">
+														Show Multiple Marker With Custom Icons
+													</a>
+
+												</li>*@
+
+
+											@*	<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMultipleMarkerWithMultipleInfo">
+														Show Multiple Marker With Multiple Info
+													</a>
+
+												</li>*@
+												
+												
+												</ul>
+											</nav>
+										</div>
+										<button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
+											<i class="fas fa-bars"></i>
+										</button>
+									</div>
+									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
+										<div class="header-nav-feature header-nav-features-user d-inline-flex mx-2 pe-2 signin" id="headerAccount">
+											<a href="#" class="header-nav-features-toggle">
+											<i class="far fa-user"></i>  <partial name="_LoginPartialCustom" />
+											</a>
+										
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<div role="main" class="main">
+				<div class="owl-carousel-wrapper position-relative" style="height: 670px">
+				
+					<partial name="_Notifications" />
+				<div class="container mb-5 pb-4">
+					<div class="row">
+						<h1 class="text-info">Edit User</h1>
+					</div>
+					<div class="p-4 border rounded">
+						<div class="col-md-8">
+							<form method="post" asp-action="Edit">
+								<input asp-for="@Model.Id" hidden />
+
+								<hr />
+								<div asp-validation-summary="All" class="text-danger"></div>
+
+								<div class="form-group">
+									<label asp-for="FirstName">الاسم</label>
+									<input asp-for="FirstName" class="form-control" />
+									<span asp-validation-for="FirstName" class="text-danger"></span>
+								</div>
+
+								<div class="form-group">
+									<label asp-for="Email">الايميل</label>
+									<input asp-for="Email" readonly class="form-control" />
+									<input asp-for="Email" hidden />
+								</div>
+								@*  <div class="form-group">
+								<label asp-for="RoleId"></label>
+								<select name="RoleId" asp-items="@(new SelectList(ViewBag.cities , "Id" , "Name"))"  class="form-control">
+								<option disabled selected>--Select Role--</option>
+								</select>
+								</div>*@
+								 <div class="form-group">
+									<label asp-for="AccountType" class="col-md-2">نوع المستخدم</label>
+									<div class="col-md-10">
+										<select asp-for="AccountType" class="form-control">
+											<option disabled selected>--Select Role--</option>
+											<option value="موظف مبيعات">موظف مبيعات</option>
+											<option value="موظف استقبال">موظف استقبال</option>
+
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<button type="submit" class="btn btn-success">تحديث</button>
+									<a asp-action="Index" class="btn btn-warning" style="width:auto">العودة للصفحة السابقة</a>
+								</div>
+								<div class="form-group">
+
+									@for (int i = 0; i < Model.RoleList.Count; i++)
+									{
+										<div>
+											<input asp-for="@Model.RoleList[i].Value" hidden />
+
+
+
+
+
+
+											<input asp-for="@Model.RoleList[i].Selected" class="form-check-input" />
+
+
+
+
+
+
+
+
+											<label class="form-check-label" asp-for="@Model.RoleList[i].Text">
+												@Model.RoleList[i].Text
+											</label>
+										</div>
+									}
+
+								</div>
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				</div>
+
+				
+
+				
+
+				
+
+				
+			</div>
+
+			<br />
+			<br />
+
+	
+
+
+			
+		</div>
+	
+
+		<!-- Vendor -->
+		<script src="~/vipassist/vendor/jquery/jquery.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.appear/jquery.appear.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+		<script src="~/vipassist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.validation/jquery.validate.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+		<script src="~/vipassist/vendor/lazysizes/lazysizes.min.js"></script>
+		<script src="~/vipassist/vendor/isotope/jquery.isotope.min.js"></script>
+		<script src="~/vipassist/vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="~/vipassist/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="~/vipassist/vendor/vide/jquery.vide.min.js"></script>
+		<script src="~/vipassist/vendor/vivus/vivus.min.js"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="~/vipassist/js/theme.js"></script>
+
+		<!-- Circle Flip Slideshow Script -->
+		<script src="~/vipassist/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
+		<!-- Current Page Views -->
+		<script src="~/vipassist/js/views/view.home.js"></script>
+
+		<!-- Theme Custom -->
+		<script src="~/vipassist/js/custom.js"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="~/vipassist/js/theme.init.js"></script>
+	
+	</body>
+
+</html>
+@*<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            @if (Model != null && !String.IsNullOrEmpty(Model.Id))
+            {
+                title = "Edit Role";
+                <input asp-for="@Model.Id" hidden />
+            }
+
+            <div class="border p-3 bg-white">
+                <div class="form-group row">
+                    <h2 class="text-info pl-3">@title</h2>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="form-group row py-2 ">
+                            <div class="col-4">
+                                <label asp-for="Id"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Id" readonly class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row py-2 ">
+                            <div class="col-4">
+                                <label asp-for="Name">اسم صلاحية</label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Name" class="form-control" autocomplete="off" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row py-2 ">
+                            <div class="col-8 offset-4 row">
+                                <div class="col">
+                                    @if (Model != null && !String.IsNullOrEmpty(Model.Id))
+                                    {
+                                    //update
+                                        <input type="submit" class="btn btn-info w-100" value="تحديث" />
+                                    }
+                                    else
+                                    {
+                                        //create
+                                        <input type="submit" class="btn btn-primary w-100" value="انشاء" />
+                                    }
+                                </div>
+                                <div class="col">
+                                    <a asp-action="Index" class="btn btn-success w-100">العودة للصفحة السابقة</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>*@

@@ -1,0 +1,368 @@
+﻿@model Domains.TbRequest
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>الطلبات </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">الطلبات </a></li>
+                    <li class="breadcrumb-item active">اضافة الطلبات  </li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form id="form" enctype="multipart/form-data" method="post" role="form" asp-area="Admin" asp-controller="Request" asp-action="Save">
+
+                        <div class="card-body">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">نوع الوحدة العقارية </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label> نوع الوحدة العقارية</label>
+                                                        <select asp-for="UnitId" asp-items="@(new SelectList(ViewBag.Units , "UnitId" , "UnitName"))" class="form-control select2" style="width: 100%;" required>
+                                                            <option value="">اختر</option>
+
+
+                                                        </select>
+                                                        <span asp-validation-for="UnitId" class="text-danger"></span>
+                                                    </div>
+                                                    
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+                               
+                            </section>
+
+
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">اسم منطقة الوحدة العقارية </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label> اسم منطقة الوحدة العقارية</label>
+                                                        <select asp-for="RegionId" asp-items="@(new SelectList(ViewBag.Regions , "RegionId" , "RegionName"))" class="form-control select2" style="width: 100%;" required>
+                                                            <option value="">اختر</option>
+
+
+                                                        </select>
+                                                        <span asp-validation-for="RegionId" class="text-danger"></span>
+                                                    </div>
+                                                  
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+                              
+                            </section>
+
+
+                            <section class="content">
+                                 <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">اسم منطقة الوحدة العقارية </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                     <div class="form-group">
+                                                        <label for="exampleInputPassword1">صيغة الطلب</label>
+                                                        <textarea type="text" class="form-control" id="exampleInputPassword1" asp-for="RequestText" placeholder=" صيغة الطلب"></textarea>
+                                                        <span asp-validation-for="RequestText" class="text-danger"></span>
+                                                     </div>
+                                                   
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+                              
+                            </section>
+
+
+
+                             <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">اسم صاحب الطلب </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">اسم صاحب الطلب</label>
+                                                        <input type="text" class="form-control" id="exampleInputPassword1" asp-for="RequesterName" placeholder=" اسم صاحب الطلب">
+                                                        <span asp-validation-for="RequesterName" class="text-danger"></span>
+                                                    </div>
+                                                  
+                                                   
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+                              
+                            </section>
+
+
+
+
+                              <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">رقم تليفون صاحب الطلب </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                     <div class="form-group">
+                                <label for="exampleInputPassword1">رقم تليفون صاحب العرض</label>
+                                                        <input type="text" class="form-control" id="exampleInputPassword1" asp-for="RequesterNumber" placeholder=" رقم تليفون صاحب الطلب">
+                                <span asp-validation-for="RequesterNumber" class="text-danger"></span>
+                            </div>
+                           
+                                                   
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+                              
+                            </section>
+
+
+
+                           
+                           
+
+                            
+
+
+
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">موقع الوحدة العقارية </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                <label for="exampleInputPassword1">موقع الوحدة العقارية</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" asp-for="Location" placeholder=" موقع الوحدة العقارية">
+                                <span asp-validation-for="Location" class="text-danger"></span>
+                            </div>
+                         
+
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+
+                            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <input type="hidden" asp-for="RequestId">
+                                <input type="hidden" asp-for="UnitId">
+                                <input type="hidden" asp-for="CreatedDate">
+                                <input type="hidden" asp-for="RegionId">
+                                <input type="hidden" asp-for="CreatedBy">
+                                  <input type="hidden" asp-for="Notes">
+                            </div>
+                         
+                            
+                           
+                           
+                           
+                          
+
+
+
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+
+            </div>
+            <!--/.col (left) -->
+
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<script type="application/javascript">
+    var a = document.getElementById("inputGroupFile02");
+    a.value= "ahmed.txt";
+</script>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        //alert("ahmed");
+        const logo = document.getElementById('selectedFile');
+        const license = document.getElementById('selectedFiles');
+        const form = document.getElementById('form')
+        const erroElement = document.getElementById('error')
+        const erroElement1 = document.getElementById('error1')
+        form.addEventListener('submit', (e) => {
+            //e.preventDefault();
+            let messages = [];
+            let messages2 = [];
+            if (logo.value === '' || logo.value == null) {
+                //alert('ahmed');
+                messages.push('This field is required');
+                erroElement.innerHTML = messages;
+            }
+            else {
+                messages = [];
+                erroElement.innerHTML = messages;
+
+            }
+            if (license.value === '' || license.value == null) {
+                //alert('ahmed');
+                messages2.push('This field is required');
+                erroElement1.innerHTML = messages2;
+            }
+            else {
+                messages = [];
+                erroElement1.innerHTML = messages2;
+
+            }
+
+
+        });
+    </script>
+    }

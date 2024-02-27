@@ -1,0 +1,210 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid" >
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض العروض </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">العروض </a></li>
+                    <li class="breadcrumb-item active">عرض العروض </li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card" >
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                               
+                               
+                                <th>نوع الوحدة العقارية  </th>
+                               
+                                <th>اسم منطقة الوحدة العقارية  </th>
+
+
+                                <th>الموافقة عل   العرض  </th>
+
+                                <th>   حالة بيع العرض  </th>
+                                <th>تفاصيل العرض</th>
+                                <th>ملاحظات العرض</th>
+                                <th>تعديل</th>
+                               
+                                <th>حذف</th>
+                                <th>اضف صورة للعرض</th>
+                                <th>اضف فيديو للعرض</th>
+
+
+                                <th>بيع   العرض</th>
+
+                                <th>  ارشفة العرض</th>
+                             
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lstOffers)
+                            {
+
+                                <tr>
+                                 
+                                   
+                                    <td>
+                                        @item.UnitName
+                                    </td>
+                                    <td>
+                                        @item.RegionName
+                                    </td>
+                                   
+                                    <td>
+                                        @item.OfferStatus
+                                    </td>
+
+                                    <td>
+                                        @item.contract_type
+                                    </td>
+
+
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Offer" asp-action="Details" asp-route-id="@item.OfferId" class="btn btn-info text-white" style="cursor:pointer">
+                                            التفاصيل
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="OfferNote" asp-action="Index2" asp-route-id="@item.OfferId" class="btn btn-info text-white" style="cursor:pointer">
+                                            الملاحظات
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Offer" asp-action="Form" asp-route-id="@item.OfferId" class="btn btn-info text-white" style="cursor:pointer">
+                                            تعديل
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Offer" asp-action="Delete" asp-route-id="@item.OfferId" class="btn btn-danger text-white" style="cursor:pointer">
+                                            حذف
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="OfferImage" asp-action="FormAdd" asp-route-id="@item.OfferId" class="btn btn-info text-white" style="cursor:pointer">
+                                             الصور
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="OfferVideo" asp-action="FormAdd" asp-route-id="@item.OfferId" class="btn btn-info text-white" style="cursor:pointer">
+                                             الفيديوهات
+                                        </a>
+                                    </td>
+                                    @if (item.contract_type == "مباع")
+                                    {
+                                        <td>
+                                            مباع
+                                        </td>
+
+
+                                    }
+                                    else if (item.contract_type == "ارشيف")
+                                    {
+                                        <td>
+                                            ارشيف
+                                        </td>
+
+                                    }
+                                    else if (item.contract_type == "محجوز" || item.contract_type == "غير محجوز")
+                                    {
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="Offer" asp-action="OfferSale" asp-route-id="@item.OfferId" class="btn btn-info text-white" style="cursor:pointer">
+                                                بيع العرض
+                                            </a>
+                                        </td>
+                                    }
+                                
+                                 
+                                   
+                                   
+
+                                    @if (item.contract_type == "ارشيف")
+                                    {
+                                        <td>
+                                            ارشيف
+                                        </td>
+                                      
+
+                                    }
+                                    else if (item.contract_type == "مباع")
+                                    {
+                                        <td>
+                                            مباع
+                                        </td>
+
+                                    }
+                                    else if (item.contract_type == "محجوز" || item.contract_type == "غير محجوز") 
+                                    {
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="Offer" asp-action="OfferArchive" asp-route-id="@item.OfferId" class="btn btn-info text-white" style="cursor:pointer">
+                                                ارشفة العرض
+                                            </a>
+                                        </td>
+                                    }
+
+                                  
+
+
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>نوع الوحدة العقارية  </th>
+
+                                <th>اسم منطقة الوحدة العقارية  </th>
+
+
+                                <th>الموافقة عل   العرض  </th>
+
+                                <th>   حالة بيع العرض  </th>
+                                <th>تفاصيل العرض</th>
+                                <th>ملاحظات العرض</th>
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                                <th>اضف صورة للعرض</th>
+                                <th>اضف فيديو للعرض</th>
+
+
+                                <th>بيع   العرض</th>
+
+                                <th>  ارشفة العرض</th>
+
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

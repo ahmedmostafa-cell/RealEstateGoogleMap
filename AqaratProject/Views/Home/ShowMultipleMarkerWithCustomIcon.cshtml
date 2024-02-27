@@ -1,0 +1,270 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps JavaScript API v3 Example: Map Simple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmCvx8YNLMKoNTFkQZMQWbrpFytDLl5Dg&callback=initMap&libraries=marker&v=beta"></script>
+    <script defer src='https://unpkg.com/google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js'></script>
+    <style>
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script type="text/javascript">
+        var map;
+        function initMap() {
+            map = new google.maps.Map(
+                document.getElementById('map'),
+                { center: new google.maps.LatLng(-33.91722, 151.23064), zoom: 16 });
+          
+            LoadMarkers();
+            var iconBase =
+                'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
+
+            var icons = {
+                parking: {
+                    icon: iconBase + 'parking_lot_maps.png'
+                },
+                library: {
+                    icon: iconBase + 'library_maps.png'
+                },
+                info: {
+                    icon: iconBase + 'info-i_maps.png'
+                }
+            };
+
+            var features = [
+                {
+                    position: new google.maps.LatLng(-33.91721, 151.22630),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91539, 151.22820),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91747, 151.22912),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91910, 151.22907),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91725, 151.23011),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91872, 151.23089),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91784, 151.23094),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91682, 151.23149),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91790, 151.23463),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91666, 151.23468),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.916988, 151.233640),
+                    type: 'info'
+                }, {
+                    position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
+                    type: 'parking'
+                }, {
+                    position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
+                    type: 'parking'
+                }, {
+                    position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
+                    type: 'parking'
+                }, {
+                    position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
+                    type: 'parking'
+                }, {
+                    position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
+                    type: 'parking'
+                }, {
+                    position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
+                    type: 'parking'
+                }, {
+                    position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
+                    type: 'parking'
+                }, {
+                    position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
+                    type: 'library'
+                }
+            ];
+
+
+            function LoadMarkers() {
+               
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Map8",
+                    data: ("ahmed"),
+                    contextType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: true,
+                    success: function (points) {
+                        console.log("add markers");
+                        addMarkers(points)
+                    }, error: function (response) {
+                        console.log("error  markers");
+                        //addMarkers(markers)
+                        alert(response.responseText);
+                    }
+                });
+            }
+            function addMarkers(points) {
+                console.log("Create marker");
+                // Create markers.
+                for (var i = 0; i < points.length; i++) {
+                    console.log(points);
+                    var marker = new google.maps.Marker({
+                        position:  new google.maps.LatLng(points[i].lat, points[i].lng),
+                        icon: icons[points[i].customer_name].icon,
+                        map: map
+                    });
+                };
+            }
+            
+        }
+
+    </script>
+    <style>
+        /**
+         * 
+         * Copyright 2019 Google LLC. All Rights Reserved.
+         * SPDX-License-Identifier: Apache-2.0
+         */
+        :root {
+            --building-color: #FF9800;
+            --house-color: #0288D1;
+            --shop-color: #7B1FA2;
+            --warehouse-color: #558B2F;
+        }
+
+        /*
+             * Optional: Makes the sample page fill the window.
+             */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*
+             * Always set the map height explicitly to define the size of the div element
+             * that contains the map.
+             */
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        /*
+             * point styles in unhighlighted state.
+             */
+        .point {
+            align-items: center;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            color: #263238;
+            display: flex;
+            font-size: 14px;
+            gap: 15px;
+            height: 20px;
+            justify-content: center;
+            padding: 4px;
+            position: relative;
+            position: relative;
+            transition: all 0.3s ease-out;
+            width: 20px;
+        }
+
+            .point::after {
+                border-left: 9px solid transparent;
+                border-right: 9px solid transparent;
+                border-top: 9px solid #FFFFFF;
+                content: "";
+                height: 0;
+                left: 50%;
+                position: absolute;
+                top: 95%;
+                transform: translate(-50%, 0);
+                transition: all 0.3s ease-out;
+                width: 0;
+                z-index: 1;
+            }
+
+            .point .icon {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                color: #e81b1b;
+            }
+
+                .point .icon svg {
+                    height: 15px;
+                    width: auto;
+                }
+
+            .point .details {
+                display: none;
+                flex-direction: column;
+                flex: 1;
+            }
+
+            .point .customer_name {
+                color: #9E9E9E;
+                font-size: 10px;
+                margin-bottom: 10px;
+                margin-top: 5px;
+            }
+
+            /*
+             * point styles in highlighted state.
+             */
+            .point highlight {
+                background-color: #FFFFFF;
+                border-radius: 8px;
+                box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+                height: 80px;
+                padding: 8px 15px;
+                width: auto;
+            }
+
+                .point highlight::after {
+                    border-top: 9px solid #FFFFFF;
+                }
+
+                .point highlight .details {
+                    display: flex;
+                }
+
+                .point highlight .icon svg {
+                    width: 50px;
+                    height: 50px;
+                }
+
+    </style>
+</body>
+</html>

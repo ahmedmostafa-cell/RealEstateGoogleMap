@@ -1,0 +1,145 @@
+﻿@model AqaratProject.Models.HomePageModel
+@inject Microsoft.AspNetCore.Identity.UserManager<BL.ApplicationUser> userManager
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض  تاريخ الدخول</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">تاريخ الدخول</a></li>
+                    <li class="breadcrumb-item active">  عرض  تاريخ الدخول</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+           
+            <section class="content">
+
+
+
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">اختر الموظف و المدي الزمني </h3>
+
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label> اسم الموظف</label>
+                                        <select asp-items="@(new SelectList(ViewBag.Regions , "Id" , "FirstName"))" id="employee"  onchange="myFunction()"  class="form-control select2" style="width: 100%;" required>
+                                            <option value="">اختر</option>
+
+
+                                        </select>
+                                       
+                                    </div>
+                                 
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">من تاريخ</label>
+                                        <input type="datetime-local" class="form-control" id="exampleInputPassword1" onchange="myFunctionDate1()" placeholder=" صيغة العرض" />
+
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword2">الي تاريخ</label>
+                                        <input type="datetime-local" class="form-control" id="exampleInputPassword2" onchange="myFunctionDate2()" placeholder=" صيغة العرض" />
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+
+            </section>
+
+
+         
+
+
+
+
+      
+            <div class="card">
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>  اسم الشخص المسجل  </th>
+                                <th>  تاريخ تسجيل الدخول</th>
+                               
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                           @* @foreach (var item in Model.lstLogHistories)
+                            {
+
+                                <tr>
+                                    <td>@userManager.Users.Where(a=> a.Id == item.LoggedUserId.ToString()).FirstOrDefault().FirstName</td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+                                   
+
+                                
+                                  
+                                   
+                                </tr>
+
+                            }*@
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>  اسم الشخص المسجل  </th>
+                                <th>  تاريخ تسجيل الدخول</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<script src="~/js/ahmed.js" ></script>

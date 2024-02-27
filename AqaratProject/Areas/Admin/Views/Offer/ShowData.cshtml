@@ -1,0 +1,228 @@
+﻿@model AqaratProject.Models.HomePageModel
+@inject Microsoft.AspNetCore.Identity.UserManager<BL.ApplicationUser> userManager
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض  عدد عروض كل منطقة حسب القسم    </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#"> عدد عروض كل منطقة حسب القسم </a></li>
+                    <li class="breadcrumb-item active"> عرض    عدد عروض كل منطقة حسب القسم </li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+           
+           @* <section class="content">
+
+
+
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">اختر القسم  </h3>
+
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label> اسم القسم</label>
+                                        <select asp-items="@(new SelectList(ViewBag.units , "UnitId" , "UnitName"))" id="employee" onchange="myFunction()" class="form-control select2" style="width: 100%;" required>
+                                            <option value="">اختر</option>
+
+
+                                        </select>
+                                       
+                                    </div>
+                                 
+
+                                </div>
+
+                            
+
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+
+            </section>*@
+
+
+         
+     <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-12 col-12">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                                <h4 class="display-4">رسم بياني يوضح عدد عروض كل منطقة حسب القسم    </h4>
+                                <h3><a href="~/Admin">العودة للصفحة الرئيسية</a></h3>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <p>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <label><b>اختر المنطقة</b></label>
+                                                </div>
+                                                <div class="col-2">
+                                                    <select asp-items="@(new SelectList(ViewBag.regions , "RegionId" , "RegionName"))" id="employee" onchange="myFunction()" id="ChartType" class="form-control" style="width:150px;">
+                                                        <option selected>--اختر المنطقة--</option>
+                                                        
+
+                                                    </select>
+                                                </div>
+                                             
+                                            </div>
+                                        </p>
+
+                                        <br />
+
+                                        <div style="width:700px;height: 430px; align-items:center ">
+                                            <div id="chartView">
+                                                <canvas id="myChart" style="max-width:750px; max-height:400px;"></canvas>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+            </div>
+          </div>
+         
+       
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+    
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+
+      
+           
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+    showData();
+    function myFunction() {
+
+        ShowDataByARea();
+    };
+         function showData() 
+         {
+            var chartType = $("#ChartType").val();
+            var chartView = document.getElementById('chartView');
+            chartView.innerHTML = '&nbsp;'
+            $('#chartView').append('<canvas id="myChart" style="max-width:750px; max-height:400px;"></canvas>')
+            $.ajax({
+                type: "GET",
+            url: "https://habibaahmedm-002-site3.atempurl.com/api/OfferUnitNoByAreaApi",
+                data: "",
+                contextType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: OnSuccessResult,
+                error: OnError
+            });
+            function OnSuccessResult(data) {
+
+                var _data = data;
+                var _chartLabels = _data[0];
+                console.log(_chartLabels);
+                var _chartData = _data[1];
+
+                var barColor = ["red", "green", "blue", "orange", "brown", "purple"];
+                new Chart("myChart", {
+                    type: 'bar',
+                    data: {
+                        labels: _chartLabels,
+                        datasets: [{
+                            backgroundColor: barColor,
+                            data: _chartData
+                        }]
+                    }
+                });
+
+            }
+            function OnError(data) {
+
+            }
+
+         }
+
+
+    function ShowDataByARea() 
+    {
+       
+        const option = document.getElementById("employee").value;
+        var chartType = $("#ChartType").val();
+        var chartView = document.getElementById('chartView');
+        chartView.innerHTML = '&nbsp;'
+        $('#chartView').append('<canvas id="myChart" style="max-width:750px; max-height:400px;"></canvas>')
+      
+
+        fetch(`https://habibaahmedm-002-site3.atempurl.com/api/OfferUnitNoByAreaApi/${option}`)
+            .then(response => response.json())
+            .then(data => {
+                var _data = data;
+                var _chartLabels = _data[0];
+                console.log(_chartLabels);
+                var _chartData = _data[1];
+
+                var barColor = ["red", "green", "blue", "orange", "brown", "purple"];
+                new Chart("myChart", {
+                    type: 'bar',
+                    data: {
+                        labels: _chartLabels,
+                        datasets: [{
+                            backgroundColor: barColor,
+                            data: _chartData
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Custom Chart Title'
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+    }
+</script>

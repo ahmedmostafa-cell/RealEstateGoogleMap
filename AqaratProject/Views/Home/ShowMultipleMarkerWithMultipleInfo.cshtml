@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps JavaScript API v3 Example: Map Simple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmCvx8YNLMKoNTFkQZMQWbrpFytDLl5Dg&callback=initialize&libraries=marker&v=beta"></script>
+    <script defer src='https://unpkg.com/google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js'></script>
+    <style>
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script type="text/javascript">
+        var markers = [];
+        var map;
+        function initialize() {
+
+            //var beaches = [
+            //    ['Bondi Beach', -33.890542, 151.274856, 1],
+            //    ['Coogee Beach', -33.923036, 151.259052, 1],
+            //    ['Cronulla Beach', -34.028249, 151.157507, 2],
+            //    ['Manly Beach', -33.800101, 151.287478, 2],
+            //    ['Maroubra Beach', -33.950198, 151.259302, 2]
+            //];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: new google.maps.LatLng(-33.88, 151.28),
+                mapTypeId: "terrain",
+            });
+            LoadMarkers();
+            var infowindow = new google.maps.InfoWindow();
+            function LoadMarkers() {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Map8",
+                    data: ("ahmed"),
+                    contextType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: true,
+                    success: function (points) {
+                        console.log("add markers");
+                        addMarkers(points)
+                    }, error: function (response) {
+                        console.log("error  markers");
+                        //addMarkers(markers)
+                        alert(response.responseText);
+                    }
+                });
+            }
+
+            function addMarkers(points) 
+            {
+                for (var i = 0; i < points.length; i++) {
+
+                    var newMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(points[i].lat, points[i].lng),
+                        map: map,
+                        title: points[i].contract_type
+                    });
+
+                    google.maps.event.addListener(newMarker, 'click', (function (newMarker, i) {
+                        return function () {
+                            infowindow.setContent(points[i].contract_type);
+                            infowindow.open(map, newMarker);
+                        }
+                    })(newMarker, i));
+
+                    markers.push(newMarker);
+                }
+            }
+
+           
+        }
+
+        initialize();
+
+    </script>
+ 
+</body>
+</html>

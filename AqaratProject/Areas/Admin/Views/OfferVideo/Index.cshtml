@@ -1,0 +1,143 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض صور الوحدات العقارية </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#"> صور الوحدات العقارية </a></li>
+                    <li class="breadcrumb-item active">عرض  صور الوحدات العقارية </li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>صيغة العرض </th>
+                                <th>اسم صاحب العرض </th>
+                               
+                                <th>نوع الوحدة العقارية  </th>
+                               
+                                <th>اسم منطقة الوحدة العقارية  </th>
+
+                                <th> لينك فيديو الوحدة العقارية  </th>
+
+                                <th> فيديو الوحدة العقارية  </th>
+                                
+                                
+                              
+                              
+                                <th>التاريخ</th>
+                                <th>تعديل</th>
+                               
+                                <th>حذف</th>
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lsOfferVideo)
+                            {
+
+                                <tr>
+                                    <td>@Model.lstOffers.Where(a=> a.OfferId == item.OfferId).FirstOrDefault().OfferSyntax</td>
+                                    <td>
+                                        @Model.lstOffers.Where(a=> a.OfferId == item.OfferId).FirstOrDefault().OwnerName
+                                    </td>
+                                   
+                                    <td>
+                                        @Model.lstOffers.Where(a=> a.OfferId == item.OfferId).FirstOrDefault().UnitName
+                                    </td>
+                                    <td>
+                                        @Model.lstOffers.Where(a=> a.OfferId == item.OfferId).FirstOrDefault().RegionName
+                                    </td>
+                                      <td>
+                                        @item.OfferVideoYouTubeLink
+                                    </td>
+                                    <td style="width:10%">
+
+                                     
+
+                                        <a href="@string.Format("/Uploads/{0}",item.OfferVideoPath)" class="has-popup-video">
+
+                                            <span class="info">
+                                                <span class="ion ion-videocamera"></span>
+                                            </span>
+                                        </a>
+
+
+
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+                                 
+                                  
+
+                                  
+                                  
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="OfferVideo" asp-action="Form" asp-route-id="@item.OfferVideoId" class="btn btn-info text-white" style="cursor:pointer">
+                                            تعديل
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="OfferVideo" asp-action="Delete" asp-route-id="@item.OfferVideoId" class="btn btn-danger text-white" style="cursor:pointer">
+                                            حذف
+                                        </a>
+                                    </td>
+                                  
+                                   
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>صيغة العرض </th>
+                                <th>اسم صاحب العرض </th>
+
+                                <th>نوع الوحدة العقارية  </th>
+
+                                <th>اسم منطقة الوحدة العقارية  </th>
+
+
+
+
+                                <th>التاريخ</th>
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

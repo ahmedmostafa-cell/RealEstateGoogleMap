@@ -1,0 +1,360 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps JavaScript API v3 Example: Map Simple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpRpYCNr7GAhU9uM2BM-8_Wm6KiPZOpxg&callback=initMap&libraries=marker&v=beta"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @*<script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmCvx8YNLMKoNTFkQZMQWbrpFytDLl5Dg&callback=initMap&libraries=marker&v=beta"></script>*@
+   
+    <script defer src='https://unpkg.com/google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js'></script>
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous">
+    <style>
+        /**
+         * license
+         * Copyright 2019 Google LLC. All Rights Reserved.
+         * SPDX-License-Identifier: Apache-2.0
+         */
+        :root {
+            --building-color: #FF9800;
+            --house-color: #0288D1;
+            --shop-color: #7B1FA2;
+            --warehouse-color: #558B2F;
+        }
+
+        /*
+             * Optional: Makes the sample page fill the window.
+             */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*
+             * Always set the map height explicitly to define the size of the div element
+             * that contains the map.
+             */
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        /*
+             * point styles in unhighlighted state.
+             */
+        .point {
+            align-items: center;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            color: #263238;
+            display: flex;
+            font-size: 14px;
+            gap: 15px;
+            height: 20px;
+            justify-content: center;
+            padding: 4px;
+            position: relative;
+            position: relative;
+            transition: all 0.3s ease-out;
+            width: 20px;
+        }
+
+            .point::after {
+                border-left: 9px solid transparent;
+                border-right: 9px solid transparent;
+                border-top: 9px solid #FFFFFF;
+                content: "";
+                height: 0;
+                left: 50%;
+                position: absolute;
+                top: 95%;
+                transform: translate(-50%, 0);
+                transition: all 0.3s ease-out;
+                width: 0;
+                z-index: 1;
+            }
+
+            .point .icon {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                color: #e81b1b;
+            }
+
+                .point .icon svg {
+                    height: 15px;
+                    width: auto;
+                }
+
+            .point .details {
+                display: none;
+                flex-direction: column;
+                flex: 1;
+            }
+
+            .point .customer_name {
+                color: #9E9E9E;
+                font-size: 10px;
+                margin-bottom: 10px;
+                margin-top: 5px;
+            }
+
+            /*
+             * point styles in highlighted state.
+             */
+            .point.highlight {
+                background-color: #FFFFFF;
+                border-radius: 8px;
+                box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+                height: 80px;
+                padding: 8px 15px;
+                width: auto;
+            }
+
+                .point.highlight::after {
+                    border-top: 9px solid #FFFFFF;
+                }
+
+                .point.highlight .details {
+                    display: flex;
+                }
+
+                .point.highlight .icon svg {
+                    width: 50px;
+                    height: 50px;
+                }
+                .a 
+                {
+                    pointer-events : auto !important;
+                }
+
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Example single danger button -->
+    <div class="btn-group text-right" dir="rtl">
+        <select id="employee" onchange="myFunction()" asp-items="@(new SelectList(ViewBag.Units , "UnitId" , "UnitName"))" class="custom-select">
+              <option   disabled selected>اختر نوع الوحدة العقارية</option>
+              
+        </select>
+    </div>
+    <ul class="navbar-nav">
+       
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Home/Index" class="nav-link">الصفحة الرئيسية</a>
+        </li>
+    
+
+    </ul>
+    <div id="map"></div>
+
+    <script type="text/javascript">
+        let map = null;
+        let bounds = null;
+        let center = {
+            lat: 29.87800309999999,
+            lng: 40.1043057,
+        };
+        let markersArr = [];
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 11,
+                minZoom: 8,
+                center,
+                mapId: "4504f8b37365c3d0",
+            });
+            google.maps.event.addListener(map, 'idle', function (event) {
+                bounds = map.getBounds();
+                var sw = bounds.getSouthWest();
+                var ne = bounds.getNorthEast();
+                bounds = { swLat: parseFloat(sw.lat()).toFixed(15), swLng: parseFloat(sw.lng()).toFixed(15), neLat: parseFloat(ne.lat()).toFixed(15), neLng: parseFloat(ne.lng()).toFixed(15) }
+                markersArr = [];
+                console.log("remove markersArr")
+                LoadMarkers(bounds);
+            });
+        }
+
+      
+        function LoadMarkers(bounds) {
+            const option = document.getElementById("employee").value;
+            console.log("BOUNDS");
+            console.log(bounds);
+           
+            $.ajax({
+                type: "POST",
+                url: "/Home/Map8",
+                data: ({ Ids: bounds, Id: option, OnlyActive: true }),
+                contextType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: function (points) {
+                    console.log("add markers");
+                    addMarkers(points)
+                }, error: function (response) {
+                    console.log("error  markers");
+                    //addMarkers(markers)
+                   
+                }
+            });
+        }
+
+        function addMarkers(points) {
+            console.log("markersarr");
+            console.log(markersArr);
+            console.log("points");
+            console.log(points);
+            for (const point of points) {
+              
+                
+                if (markersArr.indexOf(point.id) === -1) {
+                    const advancedMarkerView = new google.maps.marker.AdvancedMarkerView({
+                        map,
+                        content: buildContent(point),
+
+                        position: new google.maps.LatLng(point.lat, point.lng),
+                        title: point.contract_type,
+                    });
+                    //var advancedMarkerView = new google.maps.Marker({
+                    //    position: new google.maps.LatLng(point.lat, point.lng),
+                    //    map: map,
+                    //    title: point.contract_type
+                    //});
+                   
+                    const element = advancedMarkerView.element;
+                   
+                    google.maps.event.addListener(map,'click' ,function(event){
+                        highlight(advancedMarkerView, point);
+                    });
+                    ["focus", "pointerenter"].forEach((event) => {
+                
+                        element.addEventListener(event, () => {
+                          
+                            highlight(advancedMarkerView, point);
+                            ahmed();
+                            $.ajax({
+                                type: "GET",
+                                url: "/Home/Index",
+                             
+                                contextType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                async: true,
+                                success: function (points) {
+                                    console.log("add markers");
+                                    addMarkers(points)
+                                }, error: function (response) {
+                                    console.log("error  markers");
+                                    //addMarkers(markers)
+
+                                }
+                            });
+                        });
+                    });
+                    ["blur", "pointerleave"].forEach((event) => {
+                        element.addEventListener(event, () => {
+                            unhighlight(advancedMarkerView, point);
+                        });
+                    });
+                    advancedMarkerView.addListener("click", (event) => {
+                        const el2 = advancedMarkerView.content.querySelector('[data-id]');
+                        console.log("el2");
+                        console.log(el2);
+                        window.location.assign("https://eibtek2-001-site1.atempurl.com/Admin/Offer/Details?id=" + el2.dataset.id);  //https://localhost:44347/Admin/Offer/Details?id=
+                        console.log("el2.dataset.id");
+                        console.log(el2.dataset.id);
+                        Window.open('https://eibtek2-001-site1.atempurl.com/Admin/Offer/Details?id=' + el2.dataset, '_blank');
+                        unhighlight(advancedMarkerView, point);
+                    });
+                    markersArr[point.id] = advancedMarkerView;
+                }
+
+            }
+        }
+       
+
+        function highlight(markerView, point) {
+          
+            markerView.content.classList.add("highlight");
+            markerView.element.style.zIndex = 1;
+            console.log(markerView.element);
+            console.log(point);
+        }
+
+        function unhighlight(markerView, point) {
+            markerView.content.classList.remove("highlight");
+            markerView.element.style.zIndex = "";
+        }
+
+        function buildContent(point) {
+            const content = document.createElement("div");
+
+            content.classList.add("point");
+            content.innerHTML = `
+                    <div class="icon" >
+                        <i aria-hidden="true" class="fa fa-icon fa-${point.icon}" title="${point.icon}"></i>
+                        <span class="fa-sr-only">${point.icon}</span>
+                    </div>
+                            <div class="details" data-id="${point.offerId}">
+                                <div class="contract_number">${point.unitName}</div>
+                                        <div class="customer_name"><a href="#" target='_blamk'>${point.location}</a></div>
+                                       
+                    </div>
+            `;
+            return content;
+        }
+
+   
+
+        function myFunction() {
+          
+            updateTable(bounds);
+        };
+
+
+        function updateTable(bounds) {
+            initMap();
+            const option = document.getElementById("employee").value;
+
+          
+            $.ajax({
+                type: "POST",
+                url: "/Home/Map9",
+                data: ({ Ids: bounds, Id: option, OnlyActive: true }),
+                contextType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: function (points) {
+                    console.log("add markers");
+                    addMarkers(points)
+                }, error: function (response) {
+                    console.log("error  markers");
+                    //addMarkers(markers)
+
+                }
+            });
+           
+        }
+        window.initMap = initMap;
+
+    </script>
+    
+   
+   
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

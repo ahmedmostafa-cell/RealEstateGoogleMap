@@ -1,0 +1,115 @@
+﻿@model AqaratProject.Models.HomePageModel
+@inject Microsoft.AspNetCore.Identity.UserManager<BL.ApplicationUser> userManager
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض  تقرير عدد الوحدات المباعة   </h1>
+            </div>
+         
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+           
+           
+
+
+         
+     <section class="content">
+
+
+                <section class="content">
+
+
+
+                    <div class="container-fluid">
+                        <!-- SELECT2 EXAMPLE -->
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">اختر   المدي الزمني </h3>
+
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                 
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">من تاريخ</label>
+                                            <input type="datetime-local" class="form-control" id="exampleInputPassword1" onchange="myFunction2()" placeholder=" صيغة العرض" />
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword2">الي تاريخ</label>
+                                            <input type="datetime-local" class="form-control" id="exampleInputPassword2" onchange="myFunction2()" placeholder=" صيغة العرض" />
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.card-body -->
+
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+
+                </section>
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3 id="selledUnits"></h3>
+
+                 <p>عدد الوحدات المباعة</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+      
+          <!-- ./col -->
+                      
+       
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+    
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+
+      
+           
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<script src="~/js/salesReport.js"></script>

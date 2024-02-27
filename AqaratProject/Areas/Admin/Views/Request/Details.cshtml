@@ -1,0 +1,422 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>تفاصيل الطلب</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">لوحة التحكم</a></li>
+                    <li class="breadcrumb-item active">تفاصيل الطلب</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+        <!-- Timelime example  -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- The time line -->
+                <div class="timeline">
+                  
+                 
+                    <!-- timeline item -->
+                  
+                
+                    <!-- END timeline item -->
+                    <!-- timeline item -->
+                 
+                  
+                    <!-- END timeline item -->
+                    <div>
+                        <i class="fas fa-clock bg-gray"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+    <!-- /.timeline -->
+
+</section>
+<!-- /.content -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form id="form" enctype="multipart/form-data" method="post" role="form" asp-area="Admin" asp-controller="Request" asp-action="Save">
+
+                        <div class="card-body">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                           
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">نوع الوحدة العقارية </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label> نوع الوحدة العقارية</label>
+                                                            <select disabled asp-for="OneRequest.UnitId" asp-items="@(new SelectList(ViewBag.Units , "UnitId" , "UnitName"))" class="form-control select2" style="width: 100%;" required>
+                                                            </select>
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+
+                           
+                            
+                          
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">اسم منطقة الوحدة العقارية </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label> اسم منطقة الوحدة العقارية</label>
+                                                        <select disabled asp-for="OneRequest.RegionId" asp-items="@(new SelectList(ViewBag.Regions , "RegionId" , "RegionName"))" class="form-control select2" style="width: 100%;" required>
+                                                        </select>
+
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+
+                            </section>
+                         
+
+                        
+
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <!-- SELECT2 EXAMPLE -->
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">صيغة الطلب </h3>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">صيغة الطلب</label>
+                                                        <textarea disabled type="text" class="form-control" id="exampleInputPassword1" asp-for="OneRequest.RequestText" placeholder=" صيغة الطلب"></textarea>
+                                                       
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+
+                            </section>
+
+
+
+
+                           
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">اسم صاحب الطلب </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                        <label for="exampleInputPassword1">اسم صاحب الطلب</label>
+                                                        <input disabled type="text" class="form-control" id="exampleInputPassword1" asp-for="OneRequest.RequesterName" placeholder=" اسم صاحب الطلب">
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+                          
+
+                            
+
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <!-- SELECT2 EXAMPLE -->
+                                        <div class="card card-default">
+                                            <div class="card-header">
+                                                <h3 class="card-title">رقم تليفون صاحب الطلب </h3>
+
+
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                        <label for="exampleInputPassword1">رقم تليفون صاحب الطلب</label>
+                                                        <input disabled type="text" class="form-control" id="exampleInputPassword1" asp-for="OneRequest.RequesterNumber" placeholder=" رقم تليفون صاحب الطلب">
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                        </div>
+                                        <!-- /.card -->
+
+                                    </div>
+
+                                </section>
+
+                           
+
+
+                           
+
+
+                           
+                              
+
+                            
+
+
+
+                           
+
+
+                          
+
+                           
+
+
+                          
+
+                           
+
+
+                           
+
+
+                           
+
+
+                         
+
+
+                          
+
+
+                          
+
+
+                           
+
+
+
+
+
+
+                            <div class="form-group">
+                                <input type="hidden" asp-for="OneRequest.RequestId">
+                                <input type="hidden" asp-for="OneRequest.UnitId">
+                                <input type="hidden" asp-for="OneRequest.CreatedDate">
+                                <input type="hidden" asp-for="OneRequest.RegionId">
+                                <input type="hidden" asp-for="OneRequest.CreatedBy">
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                       
+                    </form>
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+
+            </div>
+            <!--/.col (left) -->
+
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                    <a asp-controller="RequestNote" asp-action="Form2" asp-route-id="@Model.OneRequest.RequestId" class="btn btn-primary">اضف ملاحظة  </a>
+                 
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @if (Model.OneRequest.Notes != "موافقة")
+                        {
+                            <a asp-controller="Request" asp-action="Approve" asp-route-id="@Model.OneRequest.RequestId" class="btn btn-primary">الموافقة عل الطلب  </a>
+
+                        }
+
+                    }
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>  اسم المرسل</th>
+                                <th>  قسم المرسل</th>
+                                <th> الملاحظة</th>
+                                <th>التاريخ</th>
+
+                               
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lsRequestNote)
+                            {
+
+                                <tr>
+                                    <td>@item.SenderName</td>
+                                    <td>
+                                        @item.SenderDepartment
+                                    </td>
+                                    <td>
+                                        @item.NoteSyntax
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+
+                                  
+                                   
+
+
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>  اسم المرسل</th>
+                                <th>  قسم المرسل</th>
+                                <th> الملاحظة</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- /.content -->

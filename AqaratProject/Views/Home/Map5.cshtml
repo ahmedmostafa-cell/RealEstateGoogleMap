@@ -1,0 +1,99 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Polylines</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmCvx8YNLMKoNTFkQZMQWbrpFytDLl5Dg&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <!-- jsFiddle will insert css and js -->
+    <style>
+        #map {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+
+  </head>
+  <body>
+    <div id="map"></div>
+        
+     
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        var map;
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: {
+                    lat: 25.69707,
+                    lng: 32.70936
+                },
+                mapTypeId: google.maps.MapTypeId.TERRAIN
+            });
+
+            // Define the LatLng coordinates for the polygon's path.
+            var triangleCoords = [
+                [25.6970767974853, 32.7093696594239],
+                [25.6860561370851, 32.7100067138672],
+                [25.6763172149658, 32.699562072754],
+                [25.6415653228759, 32.6188430786133],
+                [25.6258907318115, 32.600742340088],
+                [25.6101455688477, 32.5977210998535],
+                [25.6164569854736, 32.5797386169435],
+                [25.6028747558594, 32.5906486511232],
+                [25.6109676361084, 32.5722160339355],
+                [25.604383468628, 32.5668869018556],
+                [25.5942115783692, 32.5751266479492],
+                [25.5777091979982, 32.5324325561523],
+                [25.5479125976562, 32.4978179931642],
+                [25.5470600128174, 32.474277496338],
+                [25.581527709961, 32.4714660644532],
+                [25.5925197601318, 32.4790802001954],
+                [25.6089382171631, 32.5550804138184],
+                [25.6408901214601, 32.5982742309571],
+                [25.6906356811524, 32.5464477539064],
+                [25.7106914520265, 32.585807800293],
+                [25.7316188812256, 32.5995635986328],
+                [25.7492771148683, 32.6366653442384],
+                [25.7934780120851, 32.673610687256],
+                [25.8033123016358, 32.7021675109864],
+                [25.8175773620606, 32.6997871398926],
+                [25.8168849945069, 32.7127189636232],
+                [25.8025665283203, 32.7272033691407],
+                [25.7821598052979, 32.7310066223146],
+                [25.7727775573731, 32.6860466003418],
+                [25.7448387145996, 32.6611518859864],
+                [25.6970767974853, 32.7093696594239],
+
+            ];
+            var points = [];
+            for (var i = 0; i < triangleCoords.length; i++) {
+                points.push({
+                    lat: triangleCoords[i][0],
+                    lng: triangleCoords[i][1]
+                });
+            }
+            // Construct the polygon.
+            var bermudaTriangle = new google.maps.Polygon({
+                paths: points,
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35
+            });
+            bermudaTriangle.setMap(map);
+        }
+    </script>
+  </body>
+</html>

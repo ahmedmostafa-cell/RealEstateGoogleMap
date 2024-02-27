@@ -1,0 +1,424 @@
+﻿@{
+    Layout = "";
+}
+
+
+
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+    
+<!DOCTYPE html>
+<html dir="rtl" >
+<head>
+
+	<!-- Basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Porto - Responsive HTML5 Template</title>
+
+	<meta name="keywords" content="HTML5 Template" />
+	<meta name="description" content="موقع العقارات">
+	<meta name="author" content="okler.net">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="~/vipassist/img/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="~/vipassist/img/apple-touch-icon.png">
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+
+	<!-- Web Fonts  -->
+	<link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light&display=swap" rel="stylesheet" type="text/css">
+
+	<!-- Vendor CSS -->
+	<link rel="stylesheet" href="~/vipassist/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/vipassist/vendor/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="~/vipassist/vendor/animate/animate.compat.css">
+	<link rel="stylesheet" href="~/vipassist/vendor/simple-line-icons/css/simple-line-icons.min.css">
+	<link rel="stylesheet" href="~/vipassist/vendor/owl.carousel/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="~/vipassist/vendor/owl.carousel/assets/owl.theme.default.min.css">
+	<link rel="stylesheet" href="~/vipassist/vendor/magnific-popup/magnific-popup.min.css">
+
+	<!-- Theme CSS -->
+	@*<link rel="stylesheet" href="~/vipassist/css/theme.css">*@
+	<link rel="stylesheet" href="~/vipassist/css/rtl-theme.css">
+	@*<link rel="stylesheet" href="~/vipassist/css/theme-elements.css">*@
+	<link rel="stylesheet" href="~/vipassist/css/rtl-theme-elements.css">
+	@*<link rel="stylesheet" href="~/vipassist/css/theme-blog.css">*@
+	<link rel="stylesheet" href="~/vipassist/css/rtl-theme-blog.css">
+@*	<link rel="stylesheet" href="~/vipassist/css/theme-shop.css">*@
+	<link rel="stylesheet" href="~/vipassist/css/rtl-theme-shop.css">
+
+	<!-- Current Page CSS -->
+	<link rel="stylesheet" href="~/vipassist/vendor/circle-flip-slideshow/css/component.css">
+
+	<!-- Skin CSS -->
+	<link id="skinCSS" rel="stylesheet" href="~/vipassist/css/skins/default.css">
+
+	<!-- Theme Custom CSS -->
+	<link rel="stylesheet" href="~/vipassist/css/custom.css">
+
+	<!-- Head Libs -->
+	<script src="~/vipassist/vendor/modernizr/modernizr.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" crossorigin="anonymous" />
+</head>
+
+
+<body data-plugin-page-transition>
+
+		<div class="body">
+			<header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
+				<div >
+					<div class="header-container container">
+						<div class="header-row">
+							<div class="header-column">
+								<div class="header-row">
+									<div class="header-logo">
+										@*<a href="index.html">
+											<img alt="Porto" width="100" height="48" data-sticky-width="82" data-sticky-height="40" src="~/vipassist/img/logo-default-slim.png">
+										</a>*@
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-end">
+								<div class="header-row">
+									<div class="header-nav header-nav-line header-nav-top-line header-nav-top-line-with-border order-2 order-lg-1">
+										<div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1">
+											<nav class="collapse">
+												<ul class="nav nav-pills" id="mainNav">
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="Admin" asp-controller="Home" asp-action="Index">
+														لوحة التحكم
+													</a>
+
+												</li>
+											@*	<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Privacy">
+														صفحة العروض و الطلبات
+													</a>
+
+												</li>*@
+													<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle" asp-area="" asp-controller="Roles" asp-action="Index">
+															الصلاحيات
+														</a>
+													
+													</li>
+													<li class="dropdown dropdown-mega">
+													<a class="dropdown-item dropdown-toggle" asp-area="" asp-controller="User" asp-action="Index">
+															المستخدمين
+														</a>
+													
+													</li>
+													<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Index">
+															الصفحة الرئيسية
+														</a>
+														
+													</li>
+													@*<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map">
+															الخرايط
+														</a>
+														
+													</li>
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map2">
+														الخرايط2
+													</a>
+
+												</li>
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map3">
+														الخرايط3
+													</a>
+
+												</li>*@
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map4">
+														خريطة العروض
+													</a>
+
+												</li>
+
+
+												<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map40">
+														خريطة الطلبات
+													</a>
+
+												</li>
+											@*	<li>
+												<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map5">
+													الخرايط 5
+												</a>
+
+												</li>*@
+											@*	<li>
+												<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="Map6">
+													الخرايط 6
+												</a>
+
+												</li>*@
+
+											@*	<li>
+													<a  class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="OpenWindow">
+														Marker Wth Window
+													</a>
+
+												</li>*@
+
+											@*	<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMarker">
+														Show Marker
+													</a>
+
+												</li>
+
+
+												<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMarkerWithCustomIcons">
+														Show Marker With Custom Icons
+													</a>
+
+												</li>*@
+
+
+
+											@*	<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMultipleMarker">
+														Show Multiple Marker 
+													</a>
+
+												</li>*@
+
+
+
+											@*	<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMultipleMarkerWithCustomIcon">
+														Show Multiple Marker With Custom Icons
+													</a>
+
+												</li>*@
+
+
+											@*	<li>
+													<a class="dropdown-item dropdown-toggle " asp-area="" asp-controller="Home" asp-action="ShowMultipleMarkerWithMultipleInfo">
+														Show Multiple Marker With Multiple Info
+													</a>
+
+												</li>*@
+												
+												
+												</ul>
+											</nav>
+										</div>
+										<button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
+											<i class="fas fa-bars"></i>
+										</button>
+									</div>
+									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
+										<div class="header-nav-feature header-nav-features-user d-inline-flex mx-2 pe-2 signin" id="headerAccount">
+											<a href="#" class="header-nav-features-toggle">
+											<i class="far fa-user"></i>  <partial name="_LoginPartialCustom" />
+											</a>
+										
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<div role="main" class="main">
+				<div class="owl-carousel-wrapper position-relative" style="height: 670px">
+				
+					<partial name="_Notifications" />
+				<div class="container mb-5 pb-4">
+					<div class="row">
+						<div class="col-6">
+							<h2 class="text-primary">بيان الصلاحيات </h2>
+						</div>
+						<div class="col-6 text-right">
+							<a asp-action="Upsert" asp-controller="Roles" class="btn btn-primary">تسجيل صلاحية جديدة</a>
+						</div>
+					</div>
+					<div class="p-4 border rounded">
+						@if (Model.Any())
+						{
+							<table class="table table-striped border">
+								<tr class="table-secondary">
+									<th>
+										ID
+									</th>
+									<th>
+										اسم صلاحية
+									</th>
+									<th></th>
+								</tr>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>
+											@item.Id
+										</td>
+										<td>
+											@item.Name
+										</td>
+										<td>
+											<div class="text-center">
+												<form asp-action="Delete" asp-route-id="@item.Id">
+													<a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-info text-white" style="cursor:pointer">
+														تعديل
+													</a>
+
+													<button type="submit" onclick="return confirm('Are you sure you want to delete this?')"
+													class="btn btn-danger">
+														حذف
+													</button>
+												</form>
+											</div>
+										</td>
+									</tr>
+								}
+							</table>
+						}
+					</div>
+				</div>
+				
+				
+					@*<div class="owl-carousel-loader">
+						<div class="bounce-loader">
+							<div class="bounce1"></div>
+							<div class="bounce2"></div>
+							<div class="bounce3"></div>
+						</div>
+					</div>
+					<div class="owl-carousel dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0" data-plugin-options="{'responsive': {'0': {'items': 1}, '479': {'items': 1}, '768': {'items': 1}, '979': {'items': 1}, '1199': {'items': 1}}, 'loop': false, 'autoHeight': false, 'margin': 0, 'dots': true, 'dotsVerticalOffset': '-75px', 'nav': true, 'animateIn': 'fadeIn', 'animateOut': 'fadeOut', 'mouseDrag': false, 'touchDrag': false, 'pullDrag': false, 'autoplay': true, 'autoplayTimeout': 9000, 'autoplayHoverPause': true, 'rewind': true}">
+
+						<!-- Carousel Slide 1 -->
+					<div class="position-relative" data-dynamic-height="['670px','670px','670px','550px','500px']" style="background-image: url(/Uploads/1.jpg); background-size: cover; background-position: center; height: 670px;">
+						
+
+							<div class="container position-relative z-index-1 h-100">
+								<div class="d-flex flex-column align-items-center justify-content-center h-100">
+									<h3 class="position-relative text-color-light text-5 line-height-5 font-weight-medium px-4 mb-2 appear-animation" data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
+										<span class="position-absolute right-100pct top-50pct transform3dy-n50 opacity-3">
+											<img src="~/vipassist/img/slides/slide-title-border.png" class="w-auto appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}" alt="" />
+										</span>
+										 <span class="position-relative"> <span class="position-absolute left-50pct transform3dx-n50 top-0 mt-4"><img src="ّ~/vipassist/img/slides/slide-blue-line.png" class="w-auto appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="1000" data-plugin-options="{'minWindowWidth': 0}" alt="" /></span></span>
+										<span class="position-absolute left-100pct top-50pct transform3dy-n50 opacity-3">
+											<img src="~/vipassist/img/slides/slide-title-border.png" class="w-auto appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}" alt="" />
+										</span>
+									</h3>
+									<h1 class="text-color-light font-weight-extra-bold text-12 mb-3 appear-animation" data-appear-animation="blurIn" data-appear-animation-delay="500" data-plugin-options="{'minWindowWidth': 0}"></h1>
+									<p class="text-4 text-color-light font-weight-light opacity-7 mb-0" data-plugin-animated-letters data-plugin-options="{'startDelay': 1000, 'minWindowWidth': 0}"></p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Carousel Slide 2 -->
+						<div class="position-relative overlay overlay-show overlay-op-8" data-dynamic-height="['670px','670px','670px','550px','500px']" style="background-image: url(/Uploads/2.jpg); background-size: cover; background-position: center; height: 670px;">
+							<div class="container position-relative z-index-3 h-100">
+								<div class="row justify-content-center align-items-center h-100">
+									<div class="col-lg-6">
+										<div class="d-flex flex-column align-items-center">
+											<h3 class="position-relative text-color-light text-5 line-height-5 font-weight-medium px-4 mb-2 appear-animation" data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
+												<span class="position-absolute right-100pct top-50pct transform3dy-n50 opacity-3">
+													<img src="~/vipassist/img/slides/slide-title-border.png" class="w-auto appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}" alt="" />
+												</span>
+											لسنا &nbsp;الوحيدون&nbsp; و&nbsp; لكن&nbsp; متميزون
+												<span class="position-absolute left-100pct top-50pct transform3dy-n50 opacity-3">
+													<img src="~/vipassist/img/slides/slide-title-border.png" class="w-auto appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}" alt="" />
+												</span>
+											</h3>
+										<h2 class="text-color-light font-weight-extra-bold text-12 mb-3 appear-animation" data-appear-animation="blurIn" data-appear-animation-delay="500" data-plugin-options="{'minWindowWidth': 0}">الاستاذ  &nbsp; للخدمات &nbsp; العقارية</h2>
+											<p class="text-4 text-color-light font-weight-light opacity-7 text-center mb-0" data-plugin-animated-letters data-plugin-options="{'startDelay': 1000, 'minWindowWidth': 0, 'animationSpeed': 30}"> <strong class="text-color-light"></strong> عل &nbsp; اتم &nbsp; الاستعدام &nbsp; لتقديم &nbsp; خدمة &nbsp; مميزة &nbsp; تليق &nbsp; بعملائنا &nbsp; الافاضل</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Carousel Slide 3 -->
+					<div class="position-relative overlay overlay-color-primary overlay-show overlay-op-8" data-dynamic-height="['670px','670px','670px','550px','500px']" style="background-image: url(/Uploads/3.jpg); background-size: cover; background-position: center; height: 670px;">
+							<div class="container position-relative z-index-3 h-100">
+								<div class="row justify-content-center align-items-center h-100">
+									<div class="col-lg-6">
+										<div class="d-flex flex-column align-items-center">
+											<h3 class="position-relative text-color-light text-4 line-height-5 font-weight-medium px-4 mb-2 appear-animation" data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
+												<span class="position-absolute right-100pct top-50pct transform3dy-n50 opacity-3">
+													<img src="~/vipassist/img/slides/slide-title-border.png" class="w-auto appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}" alt="" />
+												</span>
+												لسنا &nbsp;الوحيدون&nbsp; و&nbsp; لكن&nbsp; متميزون
+												<span class="position-absolute left-100pct top-50pct transform3dy-n50 opacity-3">
+													<img src="~/vipassist/img/slides/slide-title-border.png" class="w-auto appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="250" data-plugin-options="{'minWindowWidth': 0}" alt="" />
+												</span>
+											</h3>
+										<h2 class="porto-big-title text-color-light font-weight-extra-bold mb-3" data-plugin-animated-letters data-plugin-options="{'startDelay': 1000, 'minWindowWidth': 0, 'animationSpeed': 300, 'animationName': 'fadeInRightShorterOpacity', 'letterClass': 'd-inline-block'}"></h2>
+										<p class="text-4 text-color-light font-weight-light text-center mb-0" data-plugin-animated-letters data-plugin-options="{'startDelay': 2000, 'minWindowWidth': 0}">عل &nbsp; اتم &nbsp; الاستعدام &nbsp; لتقديم &nbsp; خدمة &nbsp; مميزة &nbsp; تليق &nbsp; بعملائنا &nbsp; الافاضل</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>*@
+				</div>
+
+				
+
+				
+
+				
+
+				
+			</div>
+
+			<br />
+			<br />
+
+	
+
+
+			
+		</div>
+	
+
+		<!-- Vendor -->
+		<script src="~/vipassist/vendor/jquery/jquery.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.appear/jquery.appear.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+		<script src="~/vipassist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.validation/jquery.validate.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="~/vipassist/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+		<script src="~/vipassist/vendor/lazysizes/lazysizes.min.js"></script>
+		<script src="~/vipassist/vendor/isotope/jquery.isotope.min.js"></script>
+		<script src="~/vipassist/vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="~/vipassist/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="~/vipassist/vendor/vide/jquery.vide.min.js"></script>
+		<script src="~/vipassist/vendor/vivus/vivus.min.js"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="~/vipassist/js/theme.js"></script>
+
+		<!-- Circle Flip Slideshow Script -->
+		<script src="~/vipassist/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
+		<!-- Current Page Views -->
+		<script src="~/vipassist/js/views/view.home.js"></script>
+
+		<!-- Theme Custom -->
+		<script src="~/vipassist/js/custom.js"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="~/vipassist/js/theme.init.js"></script>
+	
+	</body>
+
+</html>
+

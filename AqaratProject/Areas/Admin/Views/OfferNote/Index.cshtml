@@ -1,0 +1,88 @@
+﻿@model AqaratProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض  اللاحظات</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">عملاحظات العروض</a></li>
+                    <li class="breadcrumb-item active">عرض  اللاحظات</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>  اسم المرسل</th>
+                                <th>  قسم المرسل</th>
+                                <th> الملاحظة</th>
+                                <th>التاريخ</th>
+
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lsOfferNote)
+                            {
+
+                                <tr>
+                                    <td>@item.SenderName</td>
+                                    <td>
+                                        @item.SenderDepartment
+                                    </td>
+                                    <td>
+                                        @item.NoteSyntax
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+
+
+
+
+
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>  اسم المرسل</th>
+                                <th>  قسم المرسل</th>
+                                <th> الملاحظة</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
