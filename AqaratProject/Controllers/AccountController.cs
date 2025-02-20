@@ -210,7 +210,7 @@ namespace AqaratProject.Controllers
             // get the current time in the specified time zone
             DateTimeOffset easternTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, easternTimeZone);
             ViewData["ReturnUrl"] = returnurl;
-            returnurl = returnurl ?? Url.Content("~/");
+            returnurl = string.IsNullOrEmpty(returnurl) ? Url.Action("Map4", "Home") : returnurl;
             if (ModelState.IsValid)
             {
                 model.RememberMe = true;

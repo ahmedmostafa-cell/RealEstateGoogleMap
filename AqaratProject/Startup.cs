@@ -65,7 +65,7 @@ namespace AqaratProject
                     //URLs are from the front-end (note that they changed
                     //since posting my original question due to scrapping
                     //the original projects and starting over)
-                    builder.WithOrigins("https://localhost:44398/", "http://ismguk.com/", "https://eibtek2-001-site1.atempurl.com/", "http://localhost:60097/", "http://localhost:4200/" , "http://habibaahmedm-002-site3.atempurl.com/")
+                    builder.WithOrigins("https://localhost:44398/", "http://ismguk.com/", "https://eibtek2-001-site1.atempurl.com/", "http://localhost:60097/", "http://localhost:4200/" , "http://habibaahmedm-002-site3.atempurl.com/" , "https://habibaahmedm-002-site3.atempurl.com/")
                                      .AllowAnyHeader()
                                      .AllowAnyMethod()
                                      .AllowCredentials();
@@ -154,7 +154,7 @@ namespace AqaratProject
             app.UseCookiePolicy();
             app.UseCors(MyAllowSpecificOrigins);
            
-            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://habibaahmedm-002-site3.atempurl.com"));
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://habibaahmedm-002-site3.atempurl.com"));
             app.UseRouting();
             app.UseSession();
             app.UseAuthentication();
