@@ -430,7 +430,8 @@ namespace AqaratProject.Controllers
 
             // get the current time in the specified time zone
             DateTimeOffset easternTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, easternTimeZone);
-            returnurl = returnurl ?? Url.Content("~/");
+
+            returnurl = returnurl ?? Url.Action("Map4", "Home");
             if (remoteError != null)
             {
                 ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
